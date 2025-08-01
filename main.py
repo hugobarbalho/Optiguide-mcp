@@ -81,7 +81,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="OptiGuide MCP Server")
     parser.add_argument("--http", action="store_true", help="Run with HTTP transport")
     parser.add_argument("--port", "-p", type=int, default=8000, help="Port (default: 8000)")
-    parser.add_argument("--streamable", action="store_true", help="Run with streamable protocol")
+    parser.add_argument("--streamable-http", action="store_true", help="Run with streamable HTTP protocol")
     args = parser.parse_args()
 
     # Choose transport based on flags
@@ -106,9 +106,9 @@ if __name__ == "__main__":
                 await self.app(scope, receive, send)
         app = MCPPathRedirect(app)
         uvicorn.run(app, host="0.0.0.0", port=port, log_level="info")
-    elif args.streamable:
-        # Run with streamable protocol
-        mcp.run(transport="streamable")
+    elif args.streamable_http:
+        # Run with streamable HTTP protocol
+        mcp.run(transport="streamable-http", port=args.port)
     else:
         # Default stdio transport
         mcp.run(transport="stdio")

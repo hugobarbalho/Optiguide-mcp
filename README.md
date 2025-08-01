@@ -22,7 +22,7 @@ python main.py
 python main.py --http --port 8000
 
 # Run with streamable protocol
-python main.py --streamable
+python main.py --streamable-http
 ```
 
 ## Tools

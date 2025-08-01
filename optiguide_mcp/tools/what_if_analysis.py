@@ -6,7 +6,7 @@ def setup_what_if_analysis(mcp: FastMCP):
     @mcp.tool(
         "what-if-analysis",
         description="Given a question from the user, modify the formulation or data for a new scenario and resolve the problem.",
-        parameters={
+        annotations={
             "question": {"type": "string", "description": "User's what-if question"}
         }
     )

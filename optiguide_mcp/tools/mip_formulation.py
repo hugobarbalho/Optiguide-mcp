@@ -6,7 +6,7 @@ def setup_mip_formulation(mcp: FastMCP):
     @mcp.tool(
         "mip-formulation",
         description="Given an optimization problem description, return the LaTeX formulation of a mixed integer programming problem.",
-        parameters={
+        annotations={
             "problem_description": {"type": "string", "description": "Description of the optimization problem"}
         }
     )

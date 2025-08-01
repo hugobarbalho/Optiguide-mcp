@@ -6,7 +6,7 @@ def setup_mip_resolve(mcp: FastMCP):
     @mcp.tool(
         "mip-resolve",
         description="Given a problem description, LaTeX formulation, and inputs, solve the optimization problem.",
-        parameters={
+        annotations={
             "problem_description": {"type": "string", "description": "Description of the optimization problem"},
             "latex_formulation": {"type": "string", "description": "LaTeX formulation of the problem"},
             "inputs": {"type": "object", "description": "Inputs for the optimization problem"}
