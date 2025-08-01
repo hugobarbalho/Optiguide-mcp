@@ -1,4 +1,5 @@
-from fastmcp import FastMCP
+from fastmcp import FastMCP, Context
+from .util import send_prompt
 
 
 def setup_mip_formulation(mcp: FastMCP):
@@ -10,7 +11,8 @@ def setup_mip_formulation(mcp: FastMCP):
             "problem_description": {"type": "string", "description": "Description of the optimization problem"}
         }
     )
-    async def mip_formulation(problem_description: str):
+    async def mip_formulation(problem_description: str, ctx: Context):
         # Placeholder implementation
         # TODO: Generate LaTeX formulation from problem_description
-        return {"latex": "\\begin{align} ... \\end{align}"}
+        response = await send_prompt(ctx, f"Generate LaTeX formulation for the following optimization problem: {problem_description}")
+        return {"latex": response}

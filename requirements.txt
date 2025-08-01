@@ -1,3 +1,5 @@
 fastmcp[cli]
 uvicorn[standard]
 python-dotenv
+pyomo
+highspy
