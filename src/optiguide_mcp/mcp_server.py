@@ -11,11 +11,11 @@ from starlette.middleware.cors import CORSMiddleware
 mcp = FastMCP("OptiGuide MCP Server")
 
 # Import tool setup functions
-from optiguide_mcp.tools import setup_mip_formulation, setup_mip_resolve, setup_what_if_analysis
+from optiguide_mcp.tools import setup_mip_formulation, setup_mip_solve, setup_what_if_analysis
 
 # Setup tools
 setup_mip_formulation(mcp)
-setup_mip_resolve(mcp)
+setup_mip_solve(mcp)
 setup_what_if_analysis(mcp)
 
 # Custom HTTP routes

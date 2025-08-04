@@ -57,7 +57,7 @@ print(f"Maximum Profit: ${pyo.value(model.Profit)}")
 """
 
 
-def setup_mip_resolve(mcp: FastMCP):
+def setup_mip_solve(mcp: FastMCP):
     """Register the mip-resolve tool with the MCP server."""
     @mcp.tool(
         "mip-resolve",
@@ -68,7 +68,7 @@ def setup_mip_resolve(mcp: FastMCP):
             "inputs": {"type": "object", "description": "Inputs for the optimization problem"}
         }
     )
-    async def mip_resolve(ctx: Context, problem_description: str, latex_formulation: str, inputs: dict = ""):
+    async def mip_solve(ctx: Context, problem_description: str, latex_formulation: str, inputs: dict = ""):
         prompt = f"""
         {code_gen_prompt}
 
@@ -82,12 +82,12 @@ def setup_mip_resolve(mcp: FastMCP):
         {code_example}
         """
         response = await send_prompt(ctx, prompt)
-        print("CODE RESPONSE:\n", response)
+        #print("CODE RESPONSE:\n", response)
         code_response = response[0].content.text if isinstance(response, list) else response.content.text
         # Extract code from response (assume response is a string containing the code)
         # Extract python code that is between ```python ```
         python_code_str = re.findall(r"```python\n(.*?)```", code_response, re.DOTALL)[-1]
-        print("CODE EXTRACTED:\n", python_code_str)
+        #print("CODE EXTRACTED:\n", python_code_str)
         # Create a random temporary python file
         with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as tmp_file:
             tmp_file.write(python_code_str)
