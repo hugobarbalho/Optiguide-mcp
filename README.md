@@ -9,7 +9,14 @@ This is a Model Context Protocol (MCP) server providing optimization tools:
 ## Installation
 
 ```powershell
-python -m venv .venv; .\.venv\Scripts\activate; pip install -r requirements.txt
+python -m venv .venv; .\.venv\Scripts\activate; python -m pip install .
+```
+### Linux (bash)
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install .
 ```
 
 ## Usage

@@ -1,0 +1,11 @@
+[project]
+name = "optiguide-mcp"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp[cli]>=2.11.0",
+    "highspy>=1.11.0",
+    "pyomo>=6.9.2",
+    "python-dotenv>=1.1.1",
+    "uvicorn[standard]>=0.35.0",
+]
