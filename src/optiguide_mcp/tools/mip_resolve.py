@@ -68,7 +68,7 @@ def setup_mip_resolve(mcp: FastMCP):
             "inputs": {"type": "object", "description": "Inputs for the optimization problem"}
         }
     )
-    async def mip_resolve(problem_description: str, latex_formulation: str, inputs: dict, ctx: Context):
+    async def mip_resolve(ctx: Context, problem_description: str, latex_formulation: str, inputs: dict = ""):
         prompt = f"""
         {code_gen_prompt}
 
