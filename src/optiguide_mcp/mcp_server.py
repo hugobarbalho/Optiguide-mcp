@@ -77,7 +77,7 @@ async def docs(request):
     """
     return HTMLResponse(content=docs_html)
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="OptiGuide MCP Server")
     parser.add_argument("--http", action="store_true", help="Run with HTTP transport")
     parser.add_argument("--port", "-p", type=int, default=8000, help="Port (default: 8000)")
@@ -112,3 +112,6 @@ if __name__ == "__main__":
     else:
         # Default stdio transport
         mcp.run(transport="stdio")
+
+if __name__ == "__main__":
+    main()
