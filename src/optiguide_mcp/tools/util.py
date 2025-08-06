@@ -36,7 +36,7 @@ async def send_prompt(ctx:Context, prompt:str) -> str:
 #    result = subprocess.run([sys.executable, script_path], capture_output=True, text=True)
 #    return result.stdout, result.stderr
 
-def run_as_main(script_path):
+async def run_as_main(script_path):
     # Load the module from the given script path
     captured_output = io.StringIO()
     captured_error = io.StringIO()
