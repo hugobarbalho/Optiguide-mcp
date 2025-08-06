@@ -109,9 +109,9 @@ def setup_mip_solve(mcp: FastMCP):
             output = ""
             error = str(e)
             status = "error"
-        finally:
+        #finally:
             # Clean up the temporary file
-            os.remove(tmp_filename)
+            #os.remove(tmp_filename)
 
         return {
             "python-code": python_code_str,
