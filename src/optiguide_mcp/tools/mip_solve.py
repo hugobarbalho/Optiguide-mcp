@@ -87,34 +87,35 @@ def setup_mip_solve(mcp: FastMCP):
         #print("Generating LLM code ...")
         response = await send_prompt(ctx, prompt)
         #print("CODE RESPONSE:\n", response)
-        #code_response = response[0].content.text if isinstance(response, list) else response.content.text
+        code_response = response[0].content.text if isinstance(response, list) else response.content.text
         #code_response = response['response']['result']['content'][0]['text']
         # Extract code from response (assume response is a string containing the code)
         # Extract python code that is between ```python ```
-        #python_code_str = re.findall(r"```python\n(.*?)```", code_response, re.DOTALL)[-1]
+        python_code_str = re.findall(r"```python\n(.*?)```", code_response, re.DOTALL)[-1]
         #print("CODE EXTRACTED:\n", python_code_str)
         # Create a random temporary python file
         #print("Saving code to temp file ...")
-        #with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as tmp_file:
-        #    tmp_file.write(python_code_str)
-        #    tmp_filename = tmp_file.name
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as tmp_file:
+            tmp_file.write(python_code_str)
+            tmp_filename = tmp_file.name
 
         try:
             # Dynamically load the temp file as a module and run its solve() function
             #print("Running code ...")
-            #output, error = await run_as_main(tmp_filename)
-            output, error = await run_as_main("")
+            output, error = await run_as_main(tmp_filename)
+            #output, error = await run_as_main("")
 
             status = "ok"
         except Exception as e:
             output = ""
             error = str(e)
             status = "error"
-        #finally:
+        finally:
             # Clean up the temporary file
-            #os.remove(tmp_filename)
+            os.remove(tmp_filename)
 
         return {
+            #"python-code": python_code_str,
             "python-code": python_code_str,
             "solution": output,
             "error": error,
