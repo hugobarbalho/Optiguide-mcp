@@ -84,7 +84,7 @@ def setup_mip_solve(mcp: FastMCP):
         *code example:*
         {code_example}
         """
-        print("Generating LLM code ...")
+        #print("Generating LLM code ...")
         response = await send_prompt(ctx, prompt)
         #print("CODE RESPONSE:\n", response)
         code_response = response[0].content.text if isinstance(response, list) else response.content.text
@@ -93,14 +93,14 @@ def setup_mip_solve(mcp: FastMCP):
         python_code_str = re.findall(r"```python\n(.*?)```", code_response, re.DOTALL)[-1]
         #print("CODE EXTRACTED:\n", python_code_str)
         # Create a random temporary python file
-        print("Saving code to temp file ...")
+        #print("Saving code to temp file ...")
         with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as tmp_file:
             tmp_file.write(python_code_str)
             tmp_filename = tmp_file.name
 
         try:
             # Dynamically load the temp file as a module and run its solve() function
-            print("Running code ...")
+            #print("Running code ...")
             output, error = await run_as_main(tmp_filename)
 
             status = "ok"
