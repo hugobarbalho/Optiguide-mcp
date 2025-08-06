@@ -88,10 +88,10 @@ def setup_mip_solve(mcp: FastMCP):
         response = await send_prompt(ctx, prompt)
         #print("CODE RESPONSE:\n", response)
         #code_response = response[0].content.text if isinstance(response, list) else response.content.text
-        code_response = response['response']['result']['content'][0]['text']
+        #code_response = response['response']['result']['content'][0]['text']
         # Extract code from response (assume response is a string containing the code)
         # Extract python code that is between ```python ```
-        python_code_str = re.findall(r"```python\n(.*?)```", code_response, re.DOTALL)[-1]
+        #python_code_str = re.findall(r"```python\n(.*?)```", code_response, re.DOTALL)[-1]
         #print("CODE EXTRACTED:\n", python_code_str)
         # Create a random temporary python file
         #print("Saving code to temp file ...")
