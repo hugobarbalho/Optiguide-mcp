@@ -94,14 +94,15 @@ def setup_mip_solve(mcp: FastMCP):
         #print("CODE EXTRACTED:\n", python_code_str)
         # Create a random temporary python file
         #print("Saving code to temp file ...")
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as tmp_file:
-            tmp_file.write(python_code_str)
-            tmp_filename = tmp_file.name
+        #with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as tmp_file:
+        #    tmp_file.write(python_code_str)
+        #    tmp_filename = tmp_file.name
 
         try:
             # Dynamically load the temp file as a module and run its solve() function
             #print("Running code ...")
-            output, error = await run_as_main(tmp_filename)
+            #output, error = await run_as_main(tmp_filename)
+            output, error = await run_as_main("")
 
             status = "ok"
         except Exception as e:
